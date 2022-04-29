@@ -1,0 +1,27 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,700;1,400&display=swap");
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+
+/* css canva */
+canvas {
+    /* background-image: url("./img/tabuleiro.png");
+    background-size: 100%;
+    background-repeat: no-repeat; */
+    border: 1px solid #000;
+    display: block;
+    margin: 0 auto;
+    position: absolute;
+    top: 30px;
+}
+
+/* css div dados */
+#dados {
+    position: absolute;
+    top: 560px;
+}
