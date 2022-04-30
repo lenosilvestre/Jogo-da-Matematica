@@ -75,12 +75,12 @@ const sapo = {
 const dado = {
   spriteX: 1066, //posição X na imagem sprites.png
   spriteY: 0, //posição Y na imagem sprites.png
-  largura: 1265, //tamanho do recorte na imagem sptrites.png
+  largura: 195, //tamanho do recorte na imagem sptrites.png
   altura: 195,  //tamanho do recorte na imagem sptrites.png
   x: 0,   //posição onde começa a desenhar no canva
   y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 1265, //tamanho do plano de fundo no canva
-  tamTelay: 195, //tamanho do plano de fundo no canva
+  tamTelax: 100, //tamanho do plano de fundo no canva
+  tamTelay: 100, //tamanho do plano de fundo no canva
   desenha() {
     contexto.drawImage(
       sprites,
@@ -92,23 +92,155 @@ const dado = {
   }
 }
 
+const dado2 = {
+  spriteX: 1265, //posição X na imagem sprites.png
+  spriteY: 0, //posição Y na imagem sprites.png
+  largura: 194, //tamanho do recorte na imagem sptrites.png
+  altura: 191,  //tamanho do recorte na imagem sptrites.png
+  x: 0,   //posição onde começa a desenhar no canva
+  y: 0,   //posição onde começa a desenhar no canva
+  tamTelax: 100, //tamanho do plano de fundo no canva
+  tamTelay: 100, //tamanho do plano de fundo no canva
+  desenha() {
+    contexto.drawImage(
+      sprites,
+      dado2.spriteX, dado2.spriteY, // Sprite X, Sprite Y
+      dado2.largura, dado2.altura, // Tamanho do recorte na sprite
+      dado2.x, dado2.y,
+      dado2.tamTelax, dado2.tamTelay,
+    );
+  }
+}
+
+const dado3 = {
+  spriteX: 1467, //posição X na imagem sprites.png
+  spriteY: 0, //posição Y na imagem sprites.png
+  largura: 194, //tamanho do recorte na imagem sptrites.png
+  altura: 191,  //tamanho do recorte na imagem sptrites.png
+  x: 0,   //posição onde começa a desenhar no canva
+  y: 0,   //posição onde começa a desenhar no canva
+  tamTelax: 100, //tamanho do plano de fundo no canva
+  tamTelay: 100, //tamanho do plano de fundo no canva
+  desenha() {
+    contexto.drawImage(
+      sprites,
+      dado3.spriteX, dado3.spriteY, // Sprite X, Sprite Y
+      dado3.largura, dado3.altura, // Tamanho do recorte na sprite
+      dado3.x, dado3.y,
+      dado3.tamTelax, dado3.tamTelay,
+    );
+  }
+}
+
+const dado4 = {
+  spriteX: 1670, //posição X na imagem sprites.png
+  spriteY: 0, //posição Y na imagem sprites.png
+  largura: 194, //tamanho do recorte na imagem sptrites.png
+  altura: 191,  //tamanho do recorte na imagem sptrites.png
+  x: 0,   //posição onde começa a desenhar no canva
+  y: 0,   //posição onde começa a desenhar no canva
+  tamTelax: 100, //tamanho do plano de fundo no canva
+  tamTelay: 100, //tamanho do plano de fundo no canva
+  desenha() {
+    contexto.drawImage(
+      sprites,
+      dado4.spriteX, dado4.spriteY, // Sprite X, Sprite Y
+      dado4.largura, dado4.altura, // Tamanho do recorte na sprite
+      dado4.x, dado4.y,
+      dado4.tamTelax, dado4.tamTelay,
+    );
+  }
+}
+
+const dado5 = {
+  spriteX: 1066, //posição X na imagem sprites.png
+  spriteY: 200, //posição Y na imagem sprites.png
+  largura: 200, //tamanho do recorte na imagem sptrites.png
+  altura: 191,  //tamanho do recorte na imagem sptrites.png
+  x: 0,   //posição onde começa a desenhar no canva
+  y: 0,   //posição onde começa a desenhar no canva
+  tamTelax: 100, //tamanho do plano de fundo no canva
+  tamTelay: 100, //tamanho do plano de fundo no canva
+  desenha() {
+    contexto.drawImage(
+      sprites,
+      dado5.spriteX, dado5.spriteY, // Sprite X, Sprite Y
+      dado5.largura, dado5.altura, // Tamanho do recorte na sprite
+      dado5.x, dado5.y,
+      dado5.tamTelax, dado5.tamTelay,
+    );
+  }
+}
+
+const dado6 = {
+  spriteX: 1271, //posição X na imagem sprites.png
+  spriteY: 195, //posição Y na imagem sprites.png
+  largura: 200, //tamanho do recorte na imagem sptrites.png
+  altura: 191,  //tamanho do recorte na imagem sptrites.png
+  x: 0,   //posição onde começa a desenhar no canva
+  y: 0,   //posição onde começa a desenhar no canva
+  tamTelax: 100, //tamanho do plano de fundo no canva
+  tamTelay: 100, //tamanho do plano de fundo no canva
+  desenha() {
+    contexto.drawImage(
+      sprites,
+      dado6.spriteX, dado6.spriteY, // Sprite X, Sprite Y
+      dado6.largura, dado6.altura, // Tamanho do recorte na sprite
+      dado6.x, dado6.y,
+      dado6.tamTelax, dado6.tamTelay,
+    );
+  }
+}
 
 function loop() {
-
-  planoDeFundo.desenha();
+ 
+ // planoDeFundo.desenha();
   sapo.desenha();
   sapo2.desenha();
-  dado.desenha();
+ 
+  
   requestAnimationFrame(loop);
 
 }
 
 loop();
+document.addEventListener("mousedown", sorteia)
 
+let contador
+console.log(contador)
+function sorteia(envento){
+  
+    
+    let sorteiaDado = Math.floor(Math.random() * 6 +1)
+    console.log("num "+sorteiaDado +" contador "+contador)
+  
+    switch (sorteiaDado) {
+      case 1:
+        dado.desenha()
+        break;
+      case 2:
+        dado2.desenha()
+        break;
+      case 3:
+        dado3.desenha()
+        break;
+      case 4:
+        dado4.desenha()
+        break;
+      case 5:
+        dado5.desenha()
+        break;
+      case 6:
+        dado6.desenha()
+        break;
+  
+      default:
+        break;
+    }
+    
+    requestAnimationFrame(sorteia);
 
-
-
-
+}
 
 
 // contexto.drawImage(

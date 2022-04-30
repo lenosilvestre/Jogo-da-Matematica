@@ -10,9 +10,9 @@ body {
 
 /* css canva */
 canvas {
-    /* background-image: url("./img/tabuleiro.png");
+    background-image: url('../img/tabuleiro.png');
     background-size: 100%;
-    background-repeat: no-repeat; */
+    background-repeat: no-repeat;
     border: 1px solid #000;
     display: block;
     margin: 0 auto;
