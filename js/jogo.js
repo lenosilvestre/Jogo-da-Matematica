@@ -48,6 +48,9 @@ const sapo2 = {
       sapo2.x, sapo2.y,
       sapo2.tamTelax, sapo2.tamTelay,
     );
+  },
+  atualiza() {
+
   }
 }
 
@@ -192,53 +195,109 @@ const dado6 = {
   }
 }
 
+
+
+
+//[telas]
+let telaAtiva = {};
+
+function mudaParaTela(novaTela) {
+  telaAtiva = novaTela;
+}
+const Telas = {
+  INICIO: {
+    desenha() {
+      planoDeFundo.desenha();
+      sapo2.desenha();
+    },
+    click() {
+      mudaParaTela(Telas.JOGO)
+    },
+    atualiza() {
+
+    }
+  },
+  JOGO: {
+    desenha() {
+      planoDeFundo.desenha();
+      sapo2.desenha();
+      sapo.desenha();
+      setTimeout(() => {
+        sort()
+
+      }, 50)
+
+    },
+    click() {
+
+    },
+    atualiza() {
+      sapo2.atualiza();
+    }
+
+  }
+}
+
+
 function loop() {
- 
- // planoDeFundo.desenha();
-  sapo.desenha();
-  sapo2.desenha();
- 
-  
+  telaAtiva.desenha();
+  telaAtiva.atualiza();
+
   requestAnimationFrame(loop);
 
 }
-
+mudaParaTela(Telas.INICIO)
 loop();
-document.addEventListener("mousedown", sorteia)
 
-let contador
-console.log(contador)
-function sorteia(envento){
-  
-    
-    let sorteiaDado = Math.floor(Math.random() * 6 +1)
-    console.log("num "+sorteiaDado +" contador "+contador)
-  
-    switch (sorteiaDado) {
-      case 1:
-        dado.desenha()
-        break;
-      case 2:
-        dado2.desenha()
-        break;
-      case 3:
-        dado3.desenha()
-        break;
-      case 4:
-        dado4.desenha()
-        break;
-      case 5:
-        dado5.desenha()
-        break;
-      case 6:
-        dado6.desenha()
-        break;
-  
-      default:
-        break;
-    }
-    
-    requestAnimationFrame(sorteia);
+
+
+document.addEventListener("mousedown", function () {
+  if (telaAtiva.click) {
+    telaAtiva.click();
+  }
+})
+let x = 0
+function sort() {
+  if (x <= 30) {
+    sorteia()
+    x++;
+  }
+
+}
+
+function sorteia() {
+
+  console.log("contador")
+
+
+  let sorteiaDado = Math.floor(Math.random() * 6 + 1)
+  console.log("num " + sorteiaDado)
+
+  switch (sorteiaDado) {
+    case 1:
+      dado.desenha()
+      break;
+    case 2:
+      dado2.desenha()
+      break;
+    case 3:
+      dado3.desenha()
+      break;
+    case 4:
+      dado4.desenha()
+      break;
+    case 5:
+      dado5.desenha()
+      break;
+    case 6:
+      dado6.desenha()
+      break;
+
+    default:
+      break;
+  }
+
+  //requestAnimationFrame(sorteia);
 
 }
 
