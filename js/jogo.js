@@ -1,4 +1,6 @@
-console.log('[DevSoutinho] Flappy Bird');
+console.log('[Jogo da matemática] ');
+
+let frames = 0;
 
 const sprites = new Image();
 sprites.src = './img/sprites.png';
@@ -30,28 +32,32 @@ const planoDeFundo = {
 
 }
 
+function criaPersonagem() {
 
-const sapo2 = {
-  spriteX: 273,
-  spriteY: 810,
-  largura: 529,
-  altura: 1078,
-  x: 170,     //posição no canva (Inicio = 170)
-  y: 410,     //posição no canva (Inicio = 410)
-  tamTelax: 120, //tamanho no canva
-  tamTelay: 260,
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      sapo2.spriteX, sapo2.spriteY, // Sprite X, Sprite Y
-      sapo2.largura, sapo2.altura, // Tamanho do recorte na sprite
-      sapo2.x, sapo2.y,
-      sapo2.tamTelax, sapo2.tamTelay,
-    );
-  },
-  atualiza() {
+  const sapo2 = {
+    spriteX: 273,
+    spriteY: 810,
+    largura: 529,
+    altura: 1078,
+    x: 170,     //posição no canva (Inicio = 170)
+    y: 410,     //posição no canva (Inicio = 410)
+    tamTelax: 120, //tamanho no canva
+    tamTelay: 260,
+    atualiza() {
 
+    },
+    desenha() {
+      contexto.drawImage(
+        sprites,
+        sapo2.spriteX, sapo2.spriteY, // Sprite X, Sprite Y
+        sapo2.largura, sapo2.altura, // Tamanho do recorte na sprite
+        sapo2.x, sapo2.y,
+        sapo2.tamTelax, sapo2.tamTelay,
+      );
+    }
   }
+  return sapo2
+
 }
 
 
@@ -75,7 +81,10 @@ const sapo = {
   }
 }
 
-const dado = {
+
+
+
+const dado1 = {
   spriteX: 1066, //posição X na imagem sprites.png
   spriteY: 0, //posição Y na imagem sprites.png
   largura: 195, //tamanho do recorte na imagem sptrites.png
@@ -87,10 +96,10 @@ const dado = {
   desenha() {
     contexto.drawImage(
       sprites,
-      dado.spriteX, dado.spriteY, // Sprite X, Sprite Y
-      dado.largura, dado.altura, // Tamanho do recorte na sprite
-      dado.x, dado.y,
-      dado.tamTelax, dado.tamTelay,
+      dado1.spriteX, dado1.spriteY, // Sprite X, Sprite Y
+      dado1.largura, dado1.altura, // Tamanho do recorte na sprite
+      dado1.x, dado1.y,
+      dado1.tamTelax, dado1.tamTelay,
     );
   }
 }
@@ -199,16 +208,28 @@ const dado6 = {
 
 
 //[telas]
-let telaAtiva = {};
+
+const globais = {}
+let telaAtiva = {}
 
 function mudaParaTela(novaTela) {
   telaAtiva = novaTela;
+  if (telaAtiva.inicializa) {
+    telaAtiva.inicializa();
+
+  }
 }
 const Telas = {
   INICIO: {
+    inicializa() {
+      globais.personagem = criaPersonagem();
+
+    },
     desenha() {
       planoDeFundo.desenha();
-      sapo2.desenha();
+      globais.personagem.desenha();
+      // sapo.desenha();
+
     },
     click() {
       mudaParaTela(Telas.JOGO)
@@ -220,19 +241,18 @@ const Telas = {
   JOGO: {
     desenha() {
       planoDeFundo.desenha();
-      sapo2.desenha();
-      sapo.desenha();
-      setTimeout(() => {
-        sort()
+      globais.personagem.desenha();
+      //sapo.desenha();
 
-      }, 50)
+      dado2.desenha();
 
     },
     click() {
+      console.log('frames ', frames)
 
     },
     atualiza() {
-      sapo2.atualiza();
+      globais.personagem.atualiza();
     }
 
   }
@@ -242,7 +262,8 @@ const Telas = {
 function loop() {
   telaAtiva.desenha();
   telaAtiva.atualiza();
-
+  frames++;
+  
   requestAnimationFrame(loop);
 
 }
@@ -256,24 +277,33 @@ document.addEventListener("mousedown", function () {
     telaAtiva.click();
   }
 })
-let x = 0
+
 function sort() {
-  if (x <= 30) {
-    sorteia()
-    x++;
+  // setInterval( function(){
+  //   rolaDado()}
+  // , 2000)
+
+  let x = 0
+  let intervalo = setInterval(frame, 1000)
+  function frame() {
+    if (x == 10) {
+      clearInterval(intervalo)
+    } else {
+      x++;
+      rolaDado()
+    }
   }
 
 }
-
-function sorteia() {
-
-  console.log("contador")
+function rolaDado() {
 
 
-  let sorteiaDado = Math.floor(Math.random() * 6 + 1)
-  console.log("num " + sorteiaDado)
+  let numSorteado = sorteia()
 
-  switch (sorteiaDado) {
+  console.log('dado ', numSorteado)
+
+
+  switch (numSorteado) {
     case 1:
       dado.desenha()
       break;
@@ -296,8 +326,12 @@ function sorteia() {
     default:
       break;
   }
+}
+function sorteia() {
 
-  //requestAnimationFrame(sorteia);
+  let sorteiaDado = Math.floor(Math.random() * 6 + 1)
+
+  return sorteiaDado
 
 }
 
