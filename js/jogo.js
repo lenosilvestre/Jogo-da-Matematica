@@ -260,7 +260,6 @@ function criaDados() {
   return dado
 }
 
-
 //[telas]
 
 const globais = {}
@@ -297,29 +296,41 @@ const Telas = {
     desenha() {
       // planoDeFundo.desenha();
       globais.personagem.desenha();
-      //sapo.desenha();
 
     },
     click() {
       console.log('frames ', frames)
-      // rolaDado() 
 
+      let cliqueMouse = document.querySelector("canvas");
+
+      cliqueMouse.addEventListener("mousedown", function (e) {
+        retorno = getMousePosition(cliqueMouse, e);
+      });
 
     },
     atualiza() {
       globais.personagem.atualiza();
-      globais.dados[sorteia()].atualiza();
+
 
     }
 
   }
 }
 
-
+let sort = false
+let contador = 0;
 function loop() {
   telaAtiva.desenha();
   telaAtiva.atualiza();
   frames++;
+
+  if (sort) {
+    globais.dados[sorteia()].atualiza();
+    contador++
+  } if (contador > 50) {
+    sort = false
+    contador = 0;
+  }
 
   requestAnimationFrame(loop);
 
@@ -344,96 +355,15 @@ function sorteia() {
   return numDadoSorteado
 
 }
+function getMousePosition(canvas, event) {
+  let rect = canvas.getBoundingClientRect();
+  let x = event.clientX - rect.left;
+  let y = event.clientY - rect.top;
+  console.log("Coordenada x: " + x,
+    "Coordenada y: " + y);
+  if (globais.dados[0].x <= x) {
+    sort = true
+  }
 
 
-
-// contexto.drawImage(
-
-//   sprites,
-//   0, 0, //sprite x, sprite y
-//   1053, 717, //tamanho do recorte na sprite 1053, 717,
-//   0, 0,
-//   800, 544,
-// );
-
-
-// // [Plano de Fundo]
-// const planoDeFundo = {
-//   spriteX: 390,
-//   spriteY: 0,
-//   largura: 275,
-//   altura: 204,
-//   x: 0,
-//   y: canvas.height - 204,
-//   desenha() {
-//     contexto.fillStyle = '#70c5ce';
-//     contexto.fillRect(0,0, canvas.width, canvas.height)
-
-//     contexto.drawImage(
-//       sprites,
-//       planoDeFundo.spriteX, planoDeFundo.spriteY,
-//       planoDeFundo.largura, planoDeFundo.altura,
-//       planoDeFundo.x, planoDeFundo.y,
-//       planoDeFundo.largura, planoDeFundo.altura,
-//     );
-
-
-//   },
-// };
-
-// // [Chao]
-// const chao = {
-//   spriteX: 0,
-//   spriteY: 610,
-//   largura: 224,
-//   altura: 112,
-//   x: 0,
-//   y: canvas.height - 112,
-//   desenha() {
-//     contexto.drawImage(
-//       sprites,
-//       chao.spriteX, chao.spriteY,
-//       chao.largura, chao.altura,
-//       chao.x, chao.y,
-//       chao.largura, chao.altura,
-//     );
-
-//     contexto.drawImage(
-//       sprites,
-//       chao.spriteX, chao.spriteY,
-//       chao.largura, chao.altura,
-//       (chao.x + chao.largura), chao.y,
-//       chao.largura, chao.altura,
-//     );
-//   },
-// };
-
-// const flappyBird = {
-//   spriteX: 0,
-//   spriteY: 0,
-//   largura: 33,
-//   altura: 24,
-//   x: 10,
-//   y: 50,
-//   desenha() {
-//     contexto.drawImage(
-//       sprites,
-//       flappyBird.spriteX, flappyBird.spriteY, // Sprite X, Sprite Y
-//       flappyBird.largura, flappyBird.altura, // Tamanho do recorte na sprite
-//       flappyBird.x, flappyBird.y,
-//       flappyBird.largura, flappyBird.altura,
-//     );
-//   }
-// }
-
-// function loop() {
-//   planoDeFundo.desenha();
-//   chao.desenha();
-//   flappyBird.desenha();
-
-//   flappyBird.y = flappyBird.y + 1;
-
-//   requestAnimationFrame(loop);
-// }
-
-// loop();
+}
