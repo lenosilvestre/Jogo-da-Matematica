@@ -1,7 +1,7 @@
 console.log('[Jogo da matemática] ');
 
 let frames = 0;
-
+const velocidadeSorteioDado = 5;
 const sprites = new Image();
 sprites.src = './img/sprites.png';
 
@@ -84,127 +84,181 @@ const sapo = {
 
 
 
-const dado1 = {
-  spriteX: 1066, //posição X na imagem sprites.png
-  spriteY: 0, //posição Y na imagem sprites.png
-  largura: 195, //tamanho do recorte na imagem sptrites.png
-  altura: 195,  //tamanho do recorte na imagem sptrites.png
-  x: 0,   //posição onde começa a desenhar no canva
-  y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 100, //tamanho do plano de fundo no canva
-  tamTelay: 100, //tamanho do plano de fundo no canva
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      dado1.spriteX, dado1.spriteY, // Sprite X, Sprite Y
-      dado1.largura, dado1.altura, // Tamanho do recorte na sprite
-      dado1.x, dado1.y,
-      dado1.tamTelax, dado1.tamTelay,
-    );
-  }
+function criaDados() {
+  const dado = [
+
+    {
+      face: 1,
+      spriteX: 1066, //posição X na imagem sprites.png
+      spriteY: 0, //posição Y na imagem sprites.png
+      largura: 195, //tamanho do recorte na imagem sptrites.png
+      altura: 195,  //tamanho do recorte na imagem sptrites.png
+      x: 0,   //posição onde começa a desenhar no canva
+      y: 0,   //posição onde começa a desenhar no canva
+      tamTelax: 100, //tamanho do plano de fundo no canva
+      tamTelay: 100, //tamanho do plano de fundo no canva
+      desenha() {
+        contexto.drawImage(
+          sprites,
+          this.spriteX, this.spriteY, // Sprite X, Sprite Y
+          this.largura, this.altura, // Tamanho do recorte na sprite
+          this.x, this.y,
+          this.tamTelax, this.tamTelay,
+        );
+      },
+      atualiza() {
+        const passou10Frames = frames % velocidadeSorteioDado === 0
+        if (passou10Frames) {
+
+          this.desenha()
+        }
+      }
+    },
+
+    {
+      face: 2,
+      spriteX: 1265, //posição X na imagem sprites.png
+      spriteY: 0, //posição Y na imagem sprites.png
+      largura: 194, //tamanho do recorte na imagem sptrites.png
+      altura: 191,  //tamanho do recorte na imagem sptrites.png
+      x: 0,   //posição onde começa a desenhar no canva
+      y: 0,   //posição onde começa a desenhar no canva
+      tamTelax: 100, //tamanho do plano de fundo no canva
+      tamTelay: 100, //tamanho do plano de fundo no canva
+      desenha() {
+        contexto.drawImage(
+          sprites,
+          this.spriteX, this.spriteY, // Sprite X, Sprite Y
+          this.largura, this.altura, // Tamanho do recorte na sprite
+          this.x, this.y,
+          this.tamTelax, this.tamTelay,
+        );
+      },
+      atualiza() {
+        const passou10Frames = frames % velocidadeSorteioDado === 0
+        if (passou10Frames) {
+
+          this.desenha()
+        }
+      }
+
+    },
+
+    {
+      face: 3,
+      spriteX: 1467, //posição X na imagem sprites.png
+      spriteY: 0, //posição Y na imagem sprites.png
+      largura: 194, //tamanho do recorte na imagem sptrites.png
+      altura: 191,  //tamanho do recorte na imagem sptrites.png
+      x: 0,   //posição onde começa a desenhar no canva
+      y: 0,   //posição onde começa a desenhar no canva
+      tamTelax: 100, //tamanho do plano de fundo no canva
+      tamTelay: 100, //tamanho do plano de fundo no canva
+      desenha() {
+        contexto.drawImage(
+          sprites,
+          this.spriteX, this.spriteY, // Sprite X, Sprite Y
+          this.largura, this.altura, // Tamanho do recorte na sprite
+          this.x, this.y,
+          this.tamTelax, this.tamTelay,
+        );
+      },
+      atualiza() {
+        const passou10Frames = frames % velocidadeSorteioDado === 0
+        if (passou10Frames) {
+
+          this.desenha()
+        }
+      }
+    },
+
+    {
+      face: 4,
+      spriteX: 1670, //posição X na imagem sprites.png
+      spriteY: 0, //posição Y na imagem sprites.png
+      largura: 194, //tamanho do recorte na imagem sptrites.png
+      altura: 191,  //tamanho do recorte na imagem sptrites.png
+      x: 0,   //posição onde começa a desenhar no canva
+      y: 0,   //posição onde começa a desenhar no canva
+      tamTelax: 100, //tamanho do plano de fundo no canva
+      tamTelay: 100, //tamanho do plano de fundo no canva
+      desenha() {
+        contexto.drawImage(
+          sprites,
+          this.spriteX, this.spriteY, // Sprite X, Sprite Y
+          this.largura, this.altura, // Tamanho do recorte na sprite
+          this.x, this.y,
+          this.tamTelax, this.tamTelay,
+        );
+      },
+      atualiza() {
+        const passou10Frames = frames % velocidadeSorteioDado === 0
+        if (passou10Frames) {
+
+          this.desenha()
+        }
+      }
+    },
+
+    {
+      face: 5,
+      spriteX: 1066, //posição X na imagem sprites.png
+      spriteY: 200, //posição Y na imagem sprites.png
+      largura: 200, //tamanho do recorte na imagem sptrites.png
+      altura: 191,  //tamanho do recorte na imagem sptrites.png
+      x: 0,   //posição onde começa a desenhar no canva
+      y: 0,   //posição onde começa a desenhar no canva
+      tamTelax: 100, //tamanho do plano de fundo no canva
+      tamTelay: 100, //tamanho do plano de fundo no canva
+      desenha() {
+        contexto.drawImage(
+          sprites,
+          this.spriteX, this.spriteY, // Sprite X, Sprite Y
+          this.largura, this.altura, // Tamanho do recorte na sprite
+          this.x, this.y,
+          this.tamTelax, this.tamTelay,
+        );
+      },
+      atualiza() {
+        const passou10Frames = frames % velocidadeSorteioDado === 0
+        if (passou10Frames) {
+
+          this.desenha()
+        }
+      }
+    },
+
+    {
+      face: 6,
+      spriteX: 1271, //posição X na imagem sprites.png
+      spriteY: 195, //posição Y na imagem sprites.png
+      largura: 200, //tamanho do recorte na imagem sptrites.png
+      altura: 191,  //tamanho do recorte na imagem sptrites.png
+      x: 0,   //posição onde começa a desenhar no canva
+      y: 0,   //posição onde começa a desenhar no canva
+      tamTelax: 100, //tamanho do plano de fundo no canva
+      tamTelay: 100, //tamanho do plano de fundo no canva
+      desenha() {
+        contexto.drawImage(
+          sprites,
+          this.spriteX, this.spriteY, // Sprite X, Sprite Y
+          this.largura, this.altura, // Tamanho do recorte na sprite
+          this.x, this.y,
+          this.tamTelax, this.tamTelay,
+        );
+      },
+      atualiza() {
+        const passou10Frames = frames % velocidadeSorteioDado === 0
+        if (passou10Frames) {
+
+          this.desenha()
+        }
+      }
+    }
+  ]
+
+  return dado
 }
-
-const dado2 = {
-  spriteX: 1265, //posição X na imagem sprites.png
-  spriteY: 0, //posição Y na imagem sprites.png
-  largura: 194, //tamanho do recorte na imagem sptrites.png
-  altura: 191,  //tamanho do recorte na imagem sptrites.png
-  x: 0,   //posição onde começa a desenhar no canva
-  y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 100, //tamanho do plano de fundo no canva
-  tamTelay: 100, //tamanho do plano de fundo no canva
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      dado2.spriteX, dado2.spriteY, // Sprite X, Sprite Y
-      dado2.largura, dado2.altura, // Tamanho do recorte na sprite
-      dado2.x, dado2.y,
-      dado2.tamTelax, dado2.tamTelay,
-    );
-  }
-}
-
-const dado3 = {
-  spriteX: 1467, //posição X na imagem sprites.png
-  spriteY: 0, //posição Y na imagem sprites.png
-  largura: 194, //tamanho do recorte na imagem sptrites.png
-  altura: 191,  //tamanho do recorte na imagem sptrites.png
-  x: 0,   //posição onde começa a desenhar no canva
-  y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 100, //tamanho do plano de fundo no canva
-  tamTelay: 100, //tamanho do plano de fundo no canva
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      dado3.spriteX, dado3.spriteY, // Sprite X, Sprite Y
-      dado3.largura, dado3.altura, // Tamanho do recorte na sprite
-      dado3.x, dado3.y,
-      dado3.tamTelax, dado3.tamTelay,
-    );
-  }
-}
-
-const dado4 = {
-  spriteX: 1670, //posição X na imagem sprites.png
-  spriteY: 0, //posição Y na imagem sprites.png
-  largura: 194, //tamanho do recorte na imagem sptrites.png
-  altura: 191,  //tamanho do recorte na imagem sptrites.png
-  x: 0,   //posição onde começa a desenhar no canva
-  y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 100, //tamanho do plano de fundo no canva
-  tamTelay: 100, //tamanho do plano de fundo no canva
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      dado4.spriteX, dado4.spriteY, // Sprite X, Sprite Y
-      dado4.largura, dado4.altura, // Tamanho do recorte na sprite
-      dado4.x, dado4.y,
-      dado4.tamTelax, dado4.tamTelay,
-    );
-  }
-}
-
-const dado5 = {
-  spriteX: 1066, //posição X na imagem sprites.png
-  spriteY: 200, //posição Y na imagem sprites.png
-  largura: 200, //tamanho do recorte na imagem sptrites.png
-  altura: 191,  //tamanho do recorte na imagem sptrites.png
-  x: 0,   //posição onde começa a desenhar no canva
-  y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 100, //tamanho do plano de fundo no canva
-  tamTelay: 100, //tamanho do plano de fundo no canva
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      dado5.spriteX, dado5.spriteY, // Sprite X, Sprite Y
-      dado5.largura, dado5.altura, // Tamanho do recorte na sprite
-      dado5.x, dado5.y,
-      dado5.tamTelax, dado5.tamTelay,
-    );
-  }
-}
-
-const dado6 = {
-  spriteX: 1271, //posição X na imagem sprites.png
-  spriteY: 195, //posição Y na imagem sprites.png
-  largura: 200, //tamanho do recorte na imagem sptrites.png
-  altura: 191,  //tamanho do recorte na imagem sptrites.png
-  x: 0,   //posição onde começa a desenhar no canva
-  y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 100, //tamanho do plano de fundo no canva
-  tamTelay: 100, //tamanho do plano de fundo no canva
-  desenha() {
-    contexto.drawImage(
-      sprites,
-      dado6.spriteX, dado6.spriteY, // Sprite X, Sprite Y
-      dado6.largura, dado6.altura, // Tamanho do recorte na sprite
-      dado6.x, dado6.y,
-      dado6.tamTelax, dado6.tamTelay,
-    );
-  }
-}
-
-
 
 
 //[telas]
@@ -223,10 +277,11 @@ const Telas = {
   INICIO: {
     inicializa() {
       globais.personagem = criaPersonagem();
+      globais.dados = criaDados();
 
     },
     desenha() {
-      planoDeFundo.desenha();
+      // planoDeFundo.desenha();
       globais.personagem.desenha();
       // sapo.desenha();
 
@@ -240,19 +295,21 @@ const Telas = {
   },
   JOGO: {
     desenha() {
-      planoDeFundo.desenha();
+      // planoDeFundo.desenha();
       globais.personagem.desenha();
       //sapo.desenha();
-
-      dado2.desenha();
 
     },
     click() {
       console.log('frames ', frames)
+      // rolaDado() 
+
 
     },
     atualiza() {
       globais.personagem.atualiza();
+      globais.dados[sorteia()].atualiza();
+
     }
 
   }
@@ -263,7 +320,7 @@ function loop() {
   telaAtiva.desenha();
   telaAtiva.atualiza();
   frames++;
-  
+
   requestAnimationFrame(loop);
 
 }
@@ -278,62 +335,16 @@ document.addEventListener("mousedown", function () {
   }
 })
 
-function sort() {
-  // setInterval( function(){
-  //   rolaDado()}
-  // , 2000)
-
-  let x = 0
-  let intervalo = setInterval(frame, 1000)
-  function frame() {
-    if (x == 10) {
-      clearInterval(intervalo)
-    } else {
-      x++;
-      rolaDado()
-    }
-  }
-
-}
-function rolaDado() {
 
 
-  let numSorteado = sorteia()
-
-  console.log('dado ', numSorteado)
-
-
-  switch (numSorteado) {
-    case 1:
-      dado.desenha()
-      break;
-    case 2:
-      dado2.desenha()
-      break;
-    case 3:
-      dado3.desenha()
-      break;
-    case 4:
-      dado4.desenha()
-      break;
-    case 5:
-      dado5.desenha()
-      break;
-    case 6:
-      dado6.desenha()
-      break;
-
-    default:
-      break;
-  }
-}
 function sorteia() {
 
-  let sorteiaDado = Math.floor(Math.random() * 6 + 1)
+  let numDadoSorteado = Math.floor(Math.random() * globais.dados.length)
 
-  return sorteiaDado
+  return numDadoSorteado
 
 }
+
 
 
 // contexto.drawImage(
