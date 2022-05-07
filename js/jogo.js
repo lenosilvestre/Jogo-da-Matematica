@@ -296,7 +296,7 @@ const Telas = {
     desenha() {
       // planoDeFundo.desenha();
       globais.personagem.desenha();
-
+     
     },
     click() {
       console.log('frames ', frames)
@@ -319,16 +319,24 @@ const Telas = {
 
 let sort = false
 let contador = 0;
+let dadoSorteado= [];
 function loop() {
   telaAtiva.desenha();
   telaAtiva.atualiza();
   frames++;
 
   if (sort) {
-    globais.dados[sorteia()].atualiza();
+    dadoSorteado = sorteia()
+    console.log(dadoSorteado)
+    globais.dados[dadoSorteado].atualiza();
     contador++
+    
+    //contexto.clearRect(0, 0, canvas.width, canvas.height);
   } if (contador > 50) {
+ 
+    //escreveNaTela(dadoSorteado.face)
     sort = false
+    
     contador = 0;
   }
 
@@ -338,6 +346,11 @@ function loop() {
 mudaParaTela(Telas.INICIO)
 loop();
 
+function escreveNaTela(msg){
+  contexto.font = '60px arial';
+  contexto.fillText(msg , 400,250)
+
+}
 
 
 document.addEventListener("mousedown", function () {
