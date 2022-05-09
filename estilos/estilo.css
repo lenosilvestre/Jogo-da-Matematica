@@ -21,7 +21,28 @@ canvas {
 }
 
 /* css div dados */
-#dados {
+.bt {
     position: absolute;
     top: 600px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3px;
+    margin-top: 10px;
+
+}
+
+select, button, input, label {
+    margin: 3px;
+    padding: 5px;
+    width: 110px;
+    text-align: center;
+}
+
+.label {
+    display: inline-grid;
+    background: antiquewhite;
 }

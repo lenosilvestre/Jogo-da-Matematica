@@ -1,5 +1,9 @@
 console.log('[Jogo da matemática] ');
 
+/* Posção inicial dos dados */
+let posicaoX = 140
+let posicaoY = 195
+
 let frames = 0;
 const velocidadeSorteioDado = 5;
 const sprites = new Image();
@@ -83,8 +87,8 @@ const sapo = {
 
 
 
-
 function criaDados() {
+
   const dado = [
 
     {
@@ -93,8 +97,8 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 195, //tamanho do recorte na imagem sptrites.png
       altura: 195,  //tamanho do recorte na imagem sptrites.png
-      x: 0,   //posição onde começa a desenhar no canva
-      y: 0,   //posição onde começa a desenhar no canva
+      x: posicaoX,   //posição onde começa a desenhar no canva
+      y: posicaoY,   //posição onde começa a desenhar no canva
       tamTelax: 100, //tamanho do plano de fundo no canva
       tamTelay: 100, //tamanho do plano de fundo no canva
       desenha() {
@@ -123,8 +127,8 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 194, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: 0,   //posição onde começa a desenhar no canva
-      y: 0,   //posição onde começa a desenhar no canva
+      x: posicaoX,   //posição onde começa a desenhar no canva
+      y: posicaoY,   //posição onde começa a desenhar no canva
       tamTelax: 100, //tamanho do plano de fundo no canva
       tamTelay: 100, //tamanho do plano de fundo no canva
       desenha() {
@@ -140,7 +144,6 @@ function criaDados() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
           globais.faceDoDado = this.face
-
           this.desenha()
 
         }
@@ -154,8 +157,8 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 194, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: 0,   //posição onde começa a desenhar no canva
-      y: 0,   //posição onde começa a desenhar no canva
+      x: posicaoX,   //posição onde começa a desenhar no canva
+      y: posicaoY,   //posição onde começa a desenhar no canva
       tamTelax: 100, //tamanho do plano de fundo no canva
       tamTelay: 100, //tamanho do plano de fundo no canva
       desenha() {
@@ -184,8 +187,8 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 194, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: 0,   //posição onde começa a desenhar no canva
-      y: 0,   //posição onde começa a desenhar no canva
+      x: posicaoX,   //posição onde começa a desenhar no canva
+      y: posicaoY,   //posição onde começa a desenhar no canva
       tamTelax: 100, //tamanho do plano de fundo no canva
       tamTelay: 100, //tamanho do plano de fundo no canva
       desenha() {
@@ -214,8 +217,8 @@ function criaDados() {
       spriteY: 200, //posição Y na imagem sprites.png
       largura: 200, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: 0,   //posição onde começa a desenhar no canva
-      y: 0,   //posição onde começa a desenhar no canva
+      x: posicaoX,   //posição onde começa a desenhar no canva
+      y: posicaoY,   //posição onde começa a desenhar no canva
       tamTelax: 100, //tamanho do plano de fundo no canva
       tamTelay: 100, //tamanho do plano de fundo no canva
       desenha() {
@@ -244,8 +247,8 @@ function criaDados() {
       spriteY: 195, //posição Y na imagem sprites.png
       largura: 200, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: 0,   //posição onde começa a desenhar no canva
-      y: 0,   //posição onde começa a desenhar no canva
+      x: posicaoX,   //posição onde começa a desenhar no canva
+      y: posicaoY,   //posição onde começa a desenhar no canva
       tamTelax: 100, //tamanho do plano de fundo no canva
       tamTelay: 100, //tamanho do plano de fundo no canva
       desenha() {
@@ -258,10 +261,10 @@ function criaDados() {
         );
       },
       atualiza() {
+
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
           globais.faceDoDado = this.face
-
           this.desenha()
 
         }
@@ -274,9 +277,7 @@ function criaDados() {
 
 //[telas]
 
-let faceDoDado1;
-let faceDoDado2;
-let faceDoDado3;
+
 
 const globais = {}
 let telaAtiva = {}
@@ -292,9 +293,8 @@ const Telas = {
   INICIO: {
     inicializa() {
       globais.personagem = criaPersonagem();
-      globais.dados1 = criaDados();
-      globais.dados2 = criaDados();
-      globais.dados3 = criaDados();
+
+
     },
     desenha() {
       // planoDeFundo.desenha();
@@ -316,13 +316,9 @@ const Telas = {
 
     },
     click() {
-      /* Captura onde o mouse clicou*/
-      // let cliqueMouse = document.querySelector("canvas");
-      // cliqueMouse.addEventListener("mousedown", function (e) {
-      //   retorno = getMousePosition(cliqueMouse, e);
-      // });
 
-      //sorteiaDados()
+
+
 
     },
     atualiza() {
@@ -342,52 +338,71 @@ function loop() {
   telaAtiva.desenha();
   telaAtiva.atualiza();
   frames++;
-
-  if (sort) {
-    globais.dados[sorteiaNumero()].atualiza();
-    contador++
-  } if (contador > 50) {
-    faceDoDado1 = globais.faceDoDado
-    console.log('dado1 foi: ', faceDoDado1)
-    //escreveNaTela(globais.faceDoDado)
-    sort = false
-    contador = 0;
-  }
-
+  sorteiaDados(sort)
   requestAnimationFrame(loop);
-
 }
 mudaParaTela(Telas.INICIO)
 loop();
 
 
-function sorteiaDados() {
+let faceDoDado1;
+let faceDoDado2;
+let faceDoDado3;
 
-  if (faceDoDado1) {
-    sort = true
+function sorteiaDados(x) {
+  sort = x
+
+  globais.dados = criaDados();
+
+  if (sort) {
+    globais.dados[sorteiaNumero()].atualiza()
+    contador++
+  }
+  if (contador > 50) {
+    if (!faceDoDado1) {
+      faceDoDado1 = globais.faceDoDado
+      console.log('dado1 foi: ', faceDoDado1)
+      posicaoX += 170
+
+    }
+    else if (!faceDoDado2) {
+      faceDoDado2 = globais.faceDoDado
+      console.log('dado2 foi: ', faceDoDado2)
+      posicaoX += 170
+    }
+    else if (!faceDoDado3) {
+      faceDoDado3 = globais.faceDoDado
+      console.log('dado3 foi: ', faceDoDado3)
+      document.getElementById("btSorteia").disabled = "true"
+      posicaoX = 140
+      mostraCalculadora()
+    }
+
+    escreveNaTela(globais.faceDoDado)
+    sort = false
+    contador = 0;
   }
 
-
-
 }
-
-
 
 function escreveNaTela(msg) {
   contexto.font = '60px arial';
   contexto.fillText(msg, 400, 250)
-
 }
 
-
 document.addEventListener("mousedown", function () {
+  /* Captura onde o mouse clicou*/
+  let cliqueMouse = document.querySelector("canvas");
+  cliqueMouse.addEventListener("mousedown", function (e) {
+    retorno = getMousePosition(cliqueMouse, e);
+  });
+
   if (telaAtiva.click) {
     telaAtiva.click();
   }
 })
 
-
-
+//sorteia um número aleatorio
 function sorteiaNumero() {
 
   let numDadoSorteado = Math.floor(Math.random() * globais.dados.length)
@@ -395,18 +410,50 @@ function sorteiaNumero() {
   return numDadoSorteado
 
 }
+
+//localiza onde foi o clique do mouse
 function getMousePosition(canvas, event) {
   let rect = canvas.getBoundingClientRect();
   let x = event.clientX - rect.left;
   let y = event.clientY - rect.top;
   console.log("Coordenada x: " + x,
     "Coordenada y: " + y);
-  // if (globais.dados[globais.faceDoDado].x <= x) {
-  sort = true
-  // }
-
 
 }
+
+function mostraCalculadora() {
+  document.getElementById("inputCalc").innerHTML = ` 
+      <label for="numero1" class="label">1º Dado</label>
+      <label for="operador1" class="label">Operador</label>
+      <label for="numero2" class="label">2º Dado</label>
+      <label for="operador2" class="label">Operador</label>
+      <label for="numero3" class="label">3º Dado</label><br>
+
+  <input type="number"> <select name="operadores" id="operadores">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="/">/</option>
+  <option value="*">*</option>
+
+</select> 
+<input type="number"> <select name="operadores" id="operadores">
+  <option value="+">+</option>
+  <option value="-">-</option>
+  <option value="/">/</option>
+  <option value="*">*</option>
+
+</select>
+<input type="number"><br>
+<button onclick="calcular()" class="button">Calcular</button>`
+
+}
+
+//limpa a tela do canva
 function limpaTela() {
   contexto.clearRect(0, 0, canvas.width, canvas.height);
+  document.getElementById("btSorteia").disabled = false
+  faceDoDado1 = false;
+  faceDoDado2 = false;
+  faceDoDado3 = false;
+  document.getElementById("inputCalc").innerHTML = ""
 }
