@@ -109,8 +109,10 @@ function criaDados() {
       atualiza() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
+          globais.faceDoDado = this.face
 
           this.desenha()
+
         }
       }
     },
@@ -137,8 +139,10 @@ function criaDados() {
       atualiza() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
+          globais.faceDoDado = this.face
 
           this.desenha()
+
         }
       }
 
@@ -166,8 +170,10 @@ function criaDados() {
       atualiza() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
+          globais.faceDoDado = this.face
 
           this.desenha()
+
         }
       }
     },
@@ -194,8 +200,10 @@ function criaDados() {
       atualiza() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
+          globais.faceDoDado = this.face
 
           this.desenha()
+
         }
       }
     },
@@ -222,8 +230,10 @@ function criaDados() {
       atualiza() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
+          globais.faceDoDado = this.face
 
           this.desenha()
+
         }
       }
     },
@@ -250,8 +260,10 @@ function criaDados() {
       atualiza() {
         const passou10Frames = frames % velocidadeSorteioDado === 0
         if (passou10Frames) {
+          globais.faceDoDado = this.face
 
           this.desenha()
+
         }
       }
     }
@@ -261,6 +273,10 @@ function criaDados() {
 }
 
 //[telas]
+
+let faceDoDado1;
+let faceDoDado2;
+let faceDoDado3;
 
 const globais = {}
 let telaAtiva = {}
@@ -276,8 +292,9 @@ const Telas = {
   INICIO: {
     inicializa() {
       globais.personagem = criaPersonagem();
-      globais.dados = criaDados();
-
+      globais.dados1 = criaDados();
+      globais.dados2 = criaDados();
+      globais.dados3 = criaDados();
     },
     desenha() {
       // planoDeFundo.desenha();
@@ -296,16 +313,16 @@ const Telas = {
     desenha() {
       // planoDeFundo.desenha();
       globais.personagem.desenha();
-     
+
     },
     click() {
-      console.log('frames ', frames)
+      /* Captura onde o mouse clicou*/
+      // let cliqueMouse = document.querySelector("canvas");
+      // cliqueMouse.addEventListener("mousedown", function (e) {
+      //   retorno = getMousePosition(cliqueMouse, e);
+      // });
 
-      let cliqueMouse = document.querySelector("canvas");
-
-      cliqueMouse.addEventListener("mousedown", function (e) {
-        retorno = getMousePosition(cliqueMouse, e);
-      });
+      //sorteiaDados()
 
     },
     atualiza() {
@@ -319,24 +336,21 @@ const Telas = {
 
 let sort = false
 let contador = 0;
-let dadoSorteado= [];
+
+
 function loop() {
   telaAtiva.desenha();
   telaAtiva.atualiza();
   frames++;
 
   if (sort) {
-    dadoSorteado = sorteia()
-    console.log(dadoSorteado)
-    globais.dados[dadoSorteado].atualiza();
+    globais.dados[sorteiaNumero()].atualiza();
     contador++
-    
-    //contexto.clearRect(0, 0, canvas.width, canvas.height);
   } if (contador > 50) {
- 
-    //escreveNaTela(dadoSorteado.face)
+    faceDoDado1 = globais.faceDoDado
+    console.log('dado1 foi: ', faceDoDado1)
+    //escreveNaTela(globais.faceDoDado)
     sort = false
-    
     contador = 0;
   }
 
@@ -346,9 +360,22 @@ function loop() {
 mudaParaTela(Telas.INICIO)
 loop();
 
-function escreveNaTela(msg){
+
+function sorteiaDados() {
+
+  if (faceDoDado1) {
+    sort = true
+  }
+
+
+
+}
+
+
+
+function escreveNaTela(msg) {
   contexto.font = '60px arial';
-  contexto.fillText(msg , 400,250)
+  contexto.fillText(msg, 400, 250)
 
 }
 
@@ -361,7 +388,7 @@ document.addEventListener("mousedown", function () {
 
 
 
-function sorteia() {
+function sorteiaNumero() {
 
   let numDadoSorteado = Math.floor(Math.random() * globais.dados.length)
 
@@ -374,9 +401,12 @@ function getMousePosition(canvas, event) {
   let y = event.clientY - rect.top;
   console.log("Coordenada x: " + x,
     "Coordenada y: " + y);
-  if (globais.dados[0].x <= x) {
-    sort = true
-  }
+  // if (globais.dados[globais.faceDoDado].x <= x) {
+  sort = true
+  // }
 
 
+}
+function limpaTela() {
+  contexto.clearRect(0, 0, canvas.width, canvas.height);
 }
