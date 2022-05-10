@@ -43,13 +43,12 @@ function criaPersonagem() {
     spriteY: 810,
     largura: 529,
     altura: 1078,
-    x: 170,     //posição no canva (Inicio = 170)
-    y: 410,     //posição no canva (Inicio = 410)
+    x: 45,     //posição no canva (Inicio = 170)
+    y: 40,     //posição no canva (Inicio = 410)
     tamTelax: 120, //tamanho no canva
     tamTelay: 260,
     atualiza() {
-        this.x = trilhaMapa[2].coordenadaX
-        this.y = trilhaMapa[2].coordenadaY
+
     },
     desenha() {
       contexto.drawImage(
@@ -294,7 +293,7 @@ const Telas = {
   INICIO: {
     inicializa() {
       globais.personagem = criaPersonagem();
-
+      globais.coodenadaAtual = -1
 
     },
     desenha() {
@@ -312,14 +311,14 @@ const Telas = {
   },
   JOGO: {
     desenha() {
-     
+
       globais.personagem.desenha();
 
     },
     click() {
 
 
-     // planoDeFundo.desenha();
+      // planoDeFundo.desenha();
 
     },
     atualiza() {
@@ -450,75 +449,122 @@ function mostraCalculadora() {
 </select>
 <label for="numero3" class="label">3º Dado</label>
 <input type="number" id="valor3">
-<button onclick="calcular()" class="button" id="btCalcular">Calcular</button>`
+<button onclick="calcular()" class="button" id="btCalcular">Calcular</button>
+`
 
 }
 let primeiroCalculo = 0
 let segundoCalculo = 0
 
-function  calcular(){
-  let valor1 = parseInt(document.getElementById("valor1").value)
-  let valor2 = parseInt(document.getElementById("valor2").value)
-  let valor3 = parseInt(document.getElementById("valor3").value)
-  
+
+
+function calcular() {
+  let valor1 = document.getElementById("valor1")
+  let valor2 = document.getElementById("valor2")
+  let valor3 = document.getElementById("valor3")
+
   let select = document.getElementById('operadores1');
   let operador1 = select.options[select.selectedIndex].text;
   let select2 = document.getElementById('operadores2');
   let operador2 = select2.options[select2.selectedIndex].text;
 
-  //calcula aqui
- 
 
-  switch (operador1) {
-    case '+':
-      primeiroCalculo = valor1 + valor2
-      break;
-    case '-':
-      primeiroCalculo = valor1 - valor2
-        break;
-    case '*':
-      primeiroCalculo = valor1 * valor2
-      break;
-    case '/':
-      primeiroCalculo = valor1 / valor2
-      break;
-    default:
-      break;
+  function verificaVazio() {
+
+    if (valor1.value == "") {
+      alert("favor informar 1º valor")
+      valor1.focus()
+      return false
+    }
+    if (valor2.value == "") {
+      alert("favor informar 2º valor")
+      valor2.focus()
+      return false
+    }
+    if (valor3.value == "") {
+      alert("favor informar 3º valor")
+      valor3.focus()
+      return false
+    }
+    return true
   }
-  
-  
 
-  switch (operador2) {
-    case '+':
-      segundoCalculo = primeiroCalculo + valor3
-      break;
-    case '-':
-      segundoCalculo = primeiroCalculo - valor3
-      break;
-    case '*':
-      segundoCalculo = primeiroCalculo * valor3
-      break;
-    case '/':
-      segundoCalculo = primeiroCalculo / valor3
-      break;
-    default:
-      break;
-  
+  if (verificaVazio()) {
+    valor1 = parseInt(valor1.value)
+    valor2 = parseInt(valor2.value)
+    valor3 = parseInt(valor3.value)
+
+    //calcula aqui
+    if (verificaNumeros(valor1, valor2, valor3)) {
+
+      switch (operador1) {
+        case '+':
+          primeiroCalculo = valor1 + valor2
+          break;
+        case '-':
+          primeiroCalculo = valor1 - valor2
+          break;
+        case '*':
+          primeiroCalculo = valor1 * valor2
+          break;
+        case '/':
+          primeiroCalculo = valor1 / valor2
+          break;
+        default:
+          break;
+      }
+
+      switch (operador2) {
+        case '+':
+          segundoCalculo = primeiroCalculo + valor3
+          break;
+        case '-':
+          segundoCalculo = primeiroCalculo - valor3
+          break;
+        case '*':
+          segundoCalculo = primeiroCalculo * valor3
+          break;
+        case '/':
+          segundoCalculo = primeiroCalculo / valor3
+          break;
+        default:
+          break;
+
+      }
+      console.log('valor ', primeiroCalculo, 'valor2 ', segundoCalculo)
+    }
+
+    //verifica se acertou o numero 
+    if (true) { //globais.coodenadaAtual + 2 == segundoCalculo
+      console.log("vai avancar")
+      avancaNaTrilha()
+      sorteiaDados(true)
+      document.getElementById("btSorteia").disabled = "false"
+    }
   }
-  console.log('valor ', primeiroCalculo, 'valor2 ', segundoCalculo)
+
+
+
+
 }
 
-function soma(num1, num2){
-  primeiroCalculo = num1 + num2
-}
-function subtrai(num1, num2){
-  primeiroCalculo = num1 - num2
-}
-function multiplica(num1, num2) {
-  primeiroCalculo = num1 * num2
-}
-function divide(num1, num2){
-  primeiroCalculo = num1 / num2
+//verifica se os numeros digitados corresponde aos dados na tela
+function verificaNumeros(vl1, vl2, vl3) {
+  let validado = true
+
+  if (vl1 != faceDoDado1 && vl1 != faceDoDado2 && vl1 != faceDoDado3) {
+    alert("Valor do 1º dado não corresponde aos dados sorteados.")
+    validado = false
+  }
+  if (vl2 != faceDoDado1 && vl2 != faceDoDado2 && vl2 != faceDoDado3) {
+    alert("Valor do 2º dado não corresponde aos dados sorteados.")
+    validado = false
+  }
+  if (vl3 != faceDoDado1 && vl3 != faceDoDado2 && vl3 != faceDoDado3) {
+    alert("Valor do 3º dado não corresponde aos dados sorteados.")
+    validado = false
+  }
+  return validado
 }
 
 
@@ -550,39 +596,61 @@ const trilhaMapa = [{
 },
 {
   ponto: 4,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 191,
+  coordenadaY: 213
 },
 {
   ponto: 5,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 194,
+  coordenadaY: 107
 },
 {
   ponto: 6,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 286,
+  coordenadaY: 63
 },
 {
   ponto: 7,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 394,
+  coordenadaY: 100
 },
 {
   ponto: 8,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 516,
+  coordenadaY: 70
 },
 {
   ponto: 9,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 619,
+  coordenadaY: 94
 },
 {
   ponto: 10,
-  coordenadaX: 170,
-  coordenadaY: 410
+  coordenadaX: 633,
+  coordenadaY: 207
+},
+{
+  ponto: "chegou",
+  coordenadaX: 558,
+  coordenadaY: 266
 }
 
 
 ]
+
+function avancaNaTrilha() {
+  globais.coodenadaAtual += 1
+
+  globais.personagem.x = trilhaMapa[globais.coodenadaAtual].coordenadaX
+  globais.personagem.y = trilhaMapa[globais.coodenadaAtual].coordenadaY
+
+  planoDeFundo.desenha();
+  globais.personagem.desenha()
+  if (globais.coodenadaAtual == 9) {
+    planoDeFundo.desenha();
+    console.log("[GANHOU]")
+    globais.personagem.x = trilhaMapa[globais.coodenadaAtual + 1].coordenadaX
+    globais.personagem.y = trilhaMapa[globais.coodenadaAtual + 1].coordenadaY
+    globais.personagem.desenha()
+  }
+}
