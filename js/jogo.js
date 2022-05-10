@@ -48,7 +48,8 @@ function criaPersonagem() {
     tamTelax: 120, //tamanho no canva
     tamTelay: 260,
     atualiza() {
-
+        this.x = trilhaMapa[2].coordenadaX
+        this.y = trilhaMapa[2].coordenadaY
     },
     desenha() {
       contexto.drawImage(
@@ -311,14 +312,14 @@ const Telas = {
   },
   JOGO: {
     desenha() {
-      // planoDeFundo.desenha();
+     
       globais.personagem.desenha();
 
     },
     click() {
 
 
-
+     // planoDeFundo.desenha();
 
     },
     atualiza() {
@@ -423,33 +424,107 @@ function getMousePosition(canvas, event) {
 
 function mostraCalculadora() {
   document.getElementById("inputCalc").innerHTML = ` 
-      <label for="numero1" class="label">1º Dado</label>
-      <label for="operador1" class="label">Operador</label>
-      <label for="numero2" class="label">2º Dado</label>
-      <label for="operador2" class="label">Operador</label>
-      <label for="numero3" class="label">3º Dado</label><br>
 
-  <input type="number"> <select name="operadores" id="operadores">
+      <label for="numero1" class="label">1º Dado</label>
+  <input type="number" id="valor1"> 
+
+  <label for="operador" class="label" id="operador">Operador</label>
+
+  <select name="operadores" id="operadores1">
   <option value="+">+</option>
   <option value="-">-</option>
   <option value="/">/</option>
   <option value="*">*</option>
-
 </select> 
-<input type="number"> <select name="operadores" id="operadores">
+
+<label for="numero2" class="label">2º Dado</label>
+<input type="number" id="valor2">
+
+<label for="operador" class="label" id="operador">Operador</label>
+<select name="operadores" id="operadores2">
   <option value="+">+</option>
   <option value="-">-</option>
   <option value="/">/</option>
   <option value="*">*</option>
 
 </select>
-<input type="number"><br>
-<button onclick="calcular()" class="button">Calcular</button>`
+<label for="numero3" class="label">3º Dado</label>
+<input type="number" id="valor3">
+<button onclick="calcular()" class="button" id="btCalcular">Calcular</button>`
 
 }
+let primeiroCalculo = 0
+let segundoCalculo = 0
+
+function  calcular(){
+  let valor1 = parseInt(document.getElementById("valor1").value)
+  let valor2 = parseInt(document.getElementById("valor2").value)
+  let valor3 = parseInt(document.getElementById("valor3").value)
+  
+  let select = document.getElementById('operadores1');
+  let operador1 = select.options[select.selectedIndex].text;
+  let select2 = document.getElementById('operadores2');
+  let operador2 = select2.options[select2.selectedIndex].text;
+
+  //calcula aqui
+ 
+
+  switch (operador1) {
+    case '+':
+      primeiroCalculo = valor1 + valor2
+      break;
+    case '-':
+      primeiroCalculo = valor1 - valor2
+        break;
+    case '*':
+      primeiroCalculo = valor1 * valor2
+      break;
+    case '/':
+      primeiroCalculo = valor1 / valor2
+      break;
+    default:
+      break;
+  }
+  
+  
+
+  switch (operador2) {
+    case '+':
+      segundoCalculo = primeiroCalculo + valor3
+      break;
+    case '-':
+      segundoCalculo = primeiroCalculo - valor3
+      break;
+    case '*':
+      segundoCalculo = primeiroCalculo * valor3
+      break;
+    case '/':
+      segundoCalculo = primeiroCalculo / valor3
+      break;
+    default:
+      break;
+  
+  }
+  console.log('valor ', primeiroCalculo, 'valor2 ', segundoCalculo)
+}
+
+function soma(num1, num2){
+  primeiroCalculo = num1 + num2
+}
+function subtrai(num1, num2){
+  primeiroCalculo = num1 - num2
+}
+function multiplica(num1, num2) {
+  primeiroCalculo = num1 * num2
+}
+function divide(num1, num2){
+  primeiroCalculo = num1 / num2
+}
+
 
 //limpa a tela do canva
 function limpaTela() {
+  planoDeFundo.desenha();
   contexto.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("btSorteia").disabled = false
   faceDoDado1 = false;
@@ -457,3 +532,57 @@ function limpaTela() {
   faceDoDado3 = false;
   document.getElementById("inputCalc").innerHTML = ""
 }
+
+const trilhaMapa = [{
+  ponto: 1,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 2,
+  coordenadaX: 265,
+  coordenadaY: 372
+},
+{
+  ponto: 3,
+  coordenadaX: 254,
+  coordenadaY: 282
+},
+{
+  ponto: 4,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 5,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 6,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 7,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 8,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 9,
+  coordenadaX: 170,
+  coordenadaY: 410
+},
+{
+  ponto: 10,
+  coordenadaX: 170,
+  coordenadaY: 410
+}
+
+
+]
