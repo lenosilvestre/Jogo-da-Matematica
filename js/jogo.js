@@ -546,9 +546,13 @@ function calcular() {
 
 
 
+    } else if (true) { //aqui vai ter as chances de tentativa do jogador
+      document.getElementById("inputCalc").innerHTML += `OPA, NÃO DEU TENTE DE NOVO OU SORTEI NOVAMENTE `
+
     }
   }
 }
+
 
 function proximaJogada() {
   planoDeFundo.desenha();
