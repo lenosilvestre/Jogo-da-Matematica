@@ -378,7 +378,7 @@ function sorteiaDados(x) {
       mostraCalculadora()
     }
 
-    escreveNaTela(globais.faceDoDado)
+    //  escreveNaTela(globais.faceDoDado)
     sort = false
     contador = 0;
   }
@@ -535,18 +535,32 @@ function calcular() {
     }
 
     //verifica se acertou o numero 
-    if (true) { //globais.coodenadaAtual + 2 == segundoCalculo
+    if (globais.coodenadaAtual + 2 == segundoCalculo) { //globais.coodenadaAtual + 2 == segundoCalculo
       console.log("vai avancar")
+
+
+      document.getElementById("inputCalc").innerHTML = `PARABÉNS VOCÊ AVANÇOU NA TRILHA
+     <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button>
+     `
       avancaNaTrilha()
-      sorteiaDados(true)
-      document.getElementById("btSorteia").disabled = "false"
+
+
+
     }
   }
+}
 
-
-
+function proximaJogada() {
+  planoDeFundo.desenha();
+  contexto.clearRect(0, 0, canvas.width, canvas.height);
+  document.getElementById("btSorteia").disabled = false
+  faceDoDado1 = false;
+  faceDoDado2 = false;
+  faceDoDado3 = false;
+  document.getElementById("inputCalc").innerHTML = ""
 
 }
+
 
 //verifica se os numeros digitados corresponde aos dados na tela
 function verificaNumeros(vl1, vl2, vl3) {
@@ -569,7 +583,7 @@ function verificaNumeros(vl1, vl2, vl3) {
 
 
 //limpa a tela do canva
-function limpaTela() {
+function resetarJogo() {
   planoDeFundo.desenha();
   contexto.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("btSorteia").disabled = false
@@ -577,6 +591,8 @@ function limpaTela() {
   faceDoDado2 = false;
   faceDoDado3 = false;
   document.getElementById("inputCalc").innerHTML = ""
+  mudaParaTela(Telas.INICIO)
+
 }
 
 const trilhaMapa = [{
