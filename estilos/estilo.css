@@ -20,7 +20,42 @@ canvas {
     top: 30px;
 }
 
-/* css div dados */
+#inputCalc-1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* top: 300px; */
+    margin-top: 543px;
+    flex-direction: column;
+    width: 800px;
+    height: 0;
+
+}
+
+#inputCalc {
+
+    height: 243px;
+    /* margin-top: 63px; */
+    width: 800px;
+}
+
+select, button, input, label {
+    margin: 3px;
+    padding: 5px;
+    width: 110px;
+    text-align: center;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 3px;
+
+
+}
+
+/* css div dados
 .bt {
     position: absolute;
     top: 600px;
@@ -59,8 +94,18 @@ select, button, input, label {
     text-align: justify;
 }
 
-@media only screen and (max-width: 330px) {
-    #btCalcular, #infoJogo {
-        width: 250px;
+@media only screen and (max-width: 450px) {
+    #inputCalc-1 {
+        position: absolute;
     }
-}
+
+    #infoJogo {
+        width: 300px;
+    }
+
+
+    #btCalcular {
+        top: 200px;
+        width: 100px;
+    }
+} */

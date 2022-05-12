@@ -438,9 +438,9 @@ function getMousePosition(canvas, event) {
 function mostraCalculadora() {
   document.getElementById("inputCalc").innerHTML = ` 
 
-      <label for="numero1" class="label">1º Dado</label>
-  <input type="number" id="valor1"> 
-
+    <div class="labelInput">  <label for="numero1" class="label">1º Dado</label>
+  <input type="number" id="valor1"> </div>
+  <div class="labelInput">
   <label for="operador" class="label" id="operador">Operador</label>
 
   <select name="operadores" id="operadores1">
@@ -449,21 +449,30 @@ function mostraCalculadora() {
   <option value="/">/</option>
   <option value="*">*</option>
 </select> 
+</div>
 
+<div class="labelInput">
 <label for="numero2" class="label">2º Dado</label>
 <input type="number" id="valor2">
+</div>
 
+<div class="labelInput">
 <label for="operador" class="label" id="operador">Operador</label>
 <select name="operadores" id="operadores2">
   <option value="+">+</option>
   <option value="-">-</option>
   <option value="/">/</option>
   <option value="*">*</option>
-
 </select>
+</div>
+
+<div class="labelInput">
 <label for="numero3" class="label">3º Dado</label>
-<input type="number" id="valor3">
+<input type="number" id="valor3"> </div>
+
+<div class="button"> 
 <button onclick="calcular()" class="button" id="btCalcular">Calcular</button>
+</div>
 `
 
 }
