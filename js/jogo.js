@@ -1,11 +1,20 @@
 console.log('[Jogo da matemática] ');
 
+//proporção da tela
+const proporcaoDaTela = 2
+
+
 /* Posção inicial dos dados */
 let posicaoX = 140
 let posicaoY = 195
 
+//contador de frames
 let frames = 0;
+
+//velocidade que os dados giram 
 const velocidadeSorteioDado = 5;
+
+//definindo a imagem principal 
 const sprites = new Image();
 sprites.src = './img/sprites.png';
 
@@ -547,7 +556,8 @@ function calcular() {
 
 
     } else if (true) { //aqui vai ter as chances de tentativa do jogador
-      document.getElementById("inputCalc").innerHTML += `OPA, NÃO DEU TENTE DE NOVO OU SORTEI NOVAMENTE `
+      document.getElementById("inputCalc").innerHTML += `OPA, NÃO DEU TENTE DE NOVO OU SORTEI NOVAMENTE <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button> `
+
 
     }
   }
