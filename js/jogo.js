@@ -1,12 +1,12 @@
 console.log('[Jogo da matemática] ');
 
 //proporção da tela
-const proporcaoDaTela = 2
+const proporcaoDaTela = 1
 
 
 /* Posção inicial dos dados */
-let posicaoX = 140
-let posicaoY = 195
+let posicaoX = 185 / proporcaoDaTela
+let posicaoY = 203 / proporcaoDaTela
 
 //contador de frames
 let frames = 0;
@@ -22,6 +22,11 @@ sprites.src = './img/sprites.png';
 const canvas = document.querySelector('canvas');
 const contexto = canvas.getContext('2d');
 
+
+//dividindo a tela
+canvas.width = canvas.width / proporcaoDaTela
+canvas.height = canvas.height / proporcaoDaTela
+
 const planoDeFundo = {
   spriteX: 0, //posição X na imagem sprites.png
   spriteY: 0, //posição Y na imagem sprites.png
@@ -29,8 +34,8 @@ const planoDeFundo = {
   altura: 717,  //tamanho do recorte na imagem sptrites.png
   x: 0,   //posição onde começa a desenhar no canva
   y: 0,   //posição onde começa a desenhar no canva
-  tamTelax: 800, //tamanho do plano de fundo no canva
-  tamTelay: 544, //tamanho do plano de fundo no canva
+  tamTelax: 800 / proporcaoDaTela, //tamanho do plano de fundo no canva
+  tamTelay: 544 / proporcaoDaTela, //tamanho do plano de fundo no canva
   desenha() {
     // contexto.fillStyle = '#70c5ce';
     // contexto.fillRect(0, 0, canvas.width, canvas.height)
@@ -52,10 +57,10 @@ function criaPersonagem() {
     spriteY: 810,
     largura: 529,
     altura: 1078,
-    x: 45,     //posição no canva (Inicio = 170)
-    y: 40,     //posição no canva (Inicio = 410)
-    tamTelax: 120, //tamanho no canva
-    tamTelay: 260,
+    x: 45 / proporcaoDaTela,     //posição no canva (Inicio = 170)
+    y: 40 / proporcaoDaTela,     //posição no canva (Inicio = 410)
+    tamTelax: 120 / proporcaoDaTela, //tamanho no canva
+    tamTelay: 260 / proporcaoDaTela,
     atualiza() {
 
     },
@@ -106,10 +111,10 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 195, //tamanho do recorte na imagem sptrites.png
       altura: 195,  //tamanho do recorte na imagem sptrites.png
-      x: posicaoX,   //posição onde começa a desenhar no canva
-      y: posicaoY,   //posição onde começa a desenhar no canva
-      tamTelax: 100, //tamanho do plano de fundo no canva
-      tamTelay: 100, //tamanho do plano de fundo no canva
+      x: posicaoX / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      y: posicaoY / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      tamTelax: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
+      tamTelay: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
       desenha() {
         contexto.drawImage(
           sprites,
@@ -136,10 +141,10 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 194, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: posicaoX,   //posição onde começa a desenhar no canva
-      y: posicaoY,   //posição onde começa a desenhar no canva
-      tamTelax: 100, //tamanho do plano de fundo no canva
-      tamTelay: 100, //tamanho do plano de fundo no canva
+      x: posicaoX / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      y: posicaoY / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      tamTelax: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
+      tamTelay: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
       desenha() {
         contexto.drawImage(
           sprites,
@@ -166,10 +171,10 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 194, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: posicaoX,   //posição onde começa a desenhar no canva
-      y: posicaoY,   //posição onde começa a desenhar no canva
-      tamTelax: 100, //tamanho do plano de fundo no canva
-      tamTelay: 100, //tamanho do plano de fundo no canva
+      x: posicaoX / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      y: posicaoY / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      tamTelax: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
+      tamTelay: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
       desenha() {
         contexto.drawImage(
           sprites,
@@ -196,10 +201,10 @@ function criaDados() {
       spriteY: 0, //posição Y na imagem sprites.png
       largura: 194, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: posicaoX,   //posição onde começa a desenhar no canva
-      y: posicaoY,   //posição onde começa a desenhar no canva
-      tamTelax: 100, //tamanho do plano de fundo no canva
-      tamTelay: 100, //tamanho do plano de fundo no canva
+      x: posicaoX / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      y: posicaoY / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      tamTelax: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
+      tamTelay: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
       desenha() {
         contexto.drawImage(
           sprites,
@@ -226,10 +231,10 @@ function criaDados() {
       spriteY: 200, //posição Y na imagem sprites.png
       largura: 200, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: posicaoX,   //posição onde começa a desenhar no canva
-      y: posicaoY,   //posição onde começa a desenhar no canva
-      tamTelax: 100, //tamanho do plano de fundo no canva
-      tamTelay: 100, //tamanho do plano de fundo no canva
+      x: posicaoX / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      y: posicaoY / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      tamTelax: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
+      tamTelay: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
       desenha() {
         contexto.drawImage(
           sprites,
@@ -256,10 +261,10 @@ function criaDados() {
       spriteY: 195, //posição Y na imagem sprites.png
       largura: 200, //tamanho do recorte na imagem sptrites.png
       altura: 191,  //tamanho do recorte na imagem sptrites.png
-      x: posicaoX,   //posição onde começa a desenhar no canva
-      y: posicaoY,   //posição onde começa a desenhar no canva
-      tamTelax: 100, //tamanho do plano de fundo no canva
-      tamTelay: 100, //tamanho do plano de fundo no canva
+      x: posicaoX / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      y: posicaoY / proporcaoDaTela,   //posição onde começa a desenhar no canva
+      tamTelax: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
+      tamTelay: 100 / proporcaoDaTela, //tamanho do plano de fundo no canva
       desenha() {
         contexto.drawImage(
           sprites,
@@ -671,16 +676,16 @@ const trilhaMapa = [{
 function avancaNaTrilha() {
   globais.coodenadaAtual += 1
 
-  globais.personagem.x = trilhaMapa[globais.coodenadaAtual].coordenadaX
-  globais.personagem.y = trilhaMapa[globais.coodenadaAtual].coordenadaY
+  globais.personagem.x = trilhaMapa[globais.coodenadaAtual].coordenadaX / proporcaoDaTela
+  globais.personagem.y = trilhaMapa[globais.coodenadaAtual].coordenadaY / proporcaoDaTela
 
   planoDeFundo.desenha();
   globais.personagem.desenha()
   if (globais.coodenadaAtual == 9) {
     planoDeFundo.desenha();
     console.log("[GANHOU]")
-    globais.personagem.x = trilhaMapa[globais.coodenadaAtual + 1].coordenadaX
-    globais.personagem.y = trilhaMapa[globais.coodenadaAtual + 1].coordenadaY
+    globais.personagem.x = trilhaMapa[globais.coodenadaAtual + 1].coordenadaX / proporcaoDaTela
+    globais.personagem.y = trilhaMapa[globais.coodenadaAtual + 1].coordenadaY / proporcaoDaTela
     globais.personagem.desenha()
   }
 }
