@@ -1,7 +1,16 @@
 console.log('[Jogo da matemática] ');
 
+var largura = window.screen.width;
+console.log(largura);
 //proporção da tela
-const proporcaoDaTela = 2
+
+let proporcaoDaTela
+if (largura < 450) {
+  proporcaoDaTela = 2
+} else {
+  proporcaoDaTela = 1
+}
+
 
 
 /* Posção inicial dos dados */
@@ -482,7 +491,7 @@ function mostraCalculadora() {
 `
 
   let elementosFixos = document.getElementById("elementosFixos")
-  elementosFixos.style.top = '81%';
+  elementosFixos.style.top = '620px';
 
 }
 
@@ -574,15 +583,20 @@ function calcular() {
       console.log("vai avancar")
 
 
-      document.getElementById("inputCalc").innerHTML = `PARABÉNS VOCÊ AVANÇOU NA TRILHA
-     <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button>
+      document.getElementById("inputCalc").innerHTML = `<div id="btProximo"> PARABÉNS VOCÊ AVANÇOU NA TRILHA
+     <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button> </div>
      `
       avancaNaTrilha()
 
 
 
     } else if (true) { //aqui vai ter as chances de tentativa do jogador
-      document.getElementById("inputCalc").innerHTML += `OPA, NÃO DEU TENTE DE NOVO OU SORTEI NOVAMENTE <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button> `
+      let elementosFixos = document.getElementById("elementosFixos")
+      elementosFixos.style.top = '720px';
+
+      document.getElementById("inputCalc").innerHTML += `<div id="btProximocss"> OPA, NÃO DEU TENTE DE NOVO OU SORTEI NOVAMENTE <button onclick="proximaJogada()" 
+      class="button" id="btProximo">Próximo Sorteio >></button> </div>`
+
 
 
     }
@@ -594,12 +608,15 @@ function calcular() {
 
 
 function proximaJogada() {
+
   planoDeFundo.desenha();
   contexto.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("btSorteia").disabled = false
   faceDoDado1 = false;
   faceDoDado2 = false;
   faceDoDado3 = false;
+  let elementosFixos = document.getElementById("elementosFixos")
+  elementosFixos.style.top = '330px';
   document.getElementById("inputCalc").innerHTML = ""
 
 }
@@ -633,7 +650,10 @@ function resetarJogo() {
   faceDoDado1 = false;
   faceDoDado2 = false;
   faceDoDado3 = false;
+
   document.getElementById("inputCalc").innerHTML = ""
+  let elementosFixos = document.getElementById("elementosFixos")
+  elementosFixos.style.top = '330px';
   mudaParaTela(Telas.INICIO)
 
 }

@@ -76,6 +76,19 @@ select, button, input, label {
     margin-top: 30px
 }
 
+#btProximocss {
+    position: absolute;
+    top: 273px;
+    width: 400px;
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
 @media only screen and (max-width: 450px) {
     canvas {
         left: 2px;
@@ -83,7 +96,8 @@ select, button, input, label {
 
     #elementosFixos {
 
-        top: 42%;
+        top: 330px;
+
         width: 350px;
         text-align: justify;
     }
@@ -107,6 +121,12 @@ select, button, input, label {
     }
 
     #btCaclcular1 {
+        width: 400px;
+    }
+
+    #btProximocss {
+        position: absolute;
+        top: 273px;
         width: 400px;
     }
 
