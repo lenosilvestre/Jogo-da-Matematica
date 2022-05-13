@@ -1,12 +1,12 @@
 console.log('[Jogo da matemática] ');
 
 //proporção da tela
-const proporcaoDaTela = 1
+const proporcaoDaTela = 2
 
 
 /* Posção inicial dos dados */
-let posicaoX = 185 / proporcaoDaTela
-let posicaoY = 203 / proporcaoDaTela
+let posicaoX = 185
+let posicaoY = 203
 
 //contador de frames
 let frames = 0;
@@ -416,6 +416,7 @@ document.addEventListener("mousedown", function () {
   }
 })
 
+
 //sorteia um número aleatorio
 function sorteiaNumero() {
 
@@ -438,44 +439,55 @@ function getMousePosition(canvas, event) {
 function mostraCalculadora() {
   document.getElementById("inputCalc").innerHTML = ` 
 
-    <div class="labelInput">  <label for="numero1" class="label">1º Dado</label>
-  <input type="number" id="valor1"> </div>
-  <div class="labelInput">
+  <div class="labelInput"> <label for="numero1" class="label">1º Dado</label>
+  <input type="number" id="valor1">
+</div>
+<div class="labelInput">
   <label for="operador" class="label" id="operador">Operador</label>
 
   <select name="operadores" id="operadores1">
-  <option value="+">+</option>
-  <option value="-">-</option>
-  <option value="/">/</option>
-  <option value="*">*</option>
-</select> 
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="/">/</option>
+    <option value="*">*</option>
+  </select>
 </div>
 
 <div class="labelInput">
-<label for="numero2" class="label">2º Dado</label>
-<input type="number" id="valor2">
+  <label for="numero2" class="label">2º Dado</label>
+  <input type="number" id="valor2">
 </div>
 
 <div class="labelInput">
-<label for="operador" class="label" id="operador">Operador</label>
-<select name="operadores" id="operadores2">
-  <option value="+">+</option>
-  <option value="-">-</option>
-  <option value="/">/</option>
-  <option value="*">*</option>
-</select>
+  <label for="operador" class="label" id="operador">Operador</label>
+  <select name="operadores" id="operadores2">
+    <option value="+">+</option>
+    <option value="-">-</option>
+    <option value="/">/</option>
+    <option value="*">*</option>
+  </select>
 </div>
 
 <div class="labelInput">
-<label for="numero3" class="label">3º Dado</label>
-<input type="number" id="valor3"> </div>
+  <label for="numero3" class="label">3º Dado</label>
+  <input type="number" id="valor3">
+</div>
 
-<div class="button"> 
-<button onclick="calcular()" class="button" id="btCalcular">Calcular</button>
+<div class="labelInput"><label for="total" class="label">Total </label> <input type="number" id="totalInput"
+    disabled>
+</div>
+<div class="button" id="btCaclcular1">
+ <p> <button onclick="calcular()" class="button" id="btCalcular">Calcular</button> </p>
 </div>
 `
 
+  let elementosFixos = document.getElementById("elementosFixos")
+  elementosFixos.style.top = '81%';
+
 }
+
+
+
 let primeiroCalculo = 0
 let segundoCalculo = 0
 
@@ -575,6 +587,9 @@ function calcular() {
 
     }
   }
+
+  document.getElementById("totalInput").value = segundoCalculo
+
 }
 
 
