@@ -89,19 +89,26 @@ select, button, input, label {
     }
 
     #inputCalc-1 {
-
-        position: absolute;
-        width: 800px;
+        display: flex;
+        width: 400px;
         top: 340px;
+        flex-direction: column;
+        align-items: center;
 
     }
 
     #inputCalc {
         display: flex;
-        flex-direction: column;
+        width: 400px;
+        justify-content: center;
         align-items: center;
+        flex-direction: column;
+        align-content: center;
     }
 
+    #btCaclcular1 {
+        width: 400px;
+    }
 
 
 }
