@@ -24,7 +24,7 @@ canvas {
 
     position: absolute;
     width: 800px;
-    top: 65%;
+    top: 600px;
 
 }
 
@@ -62,7 +62,7 @@ select, button, input, label {
 
 #elementosFixos {
     position: absolute;
-    top: 64%;
+    top: 720px;
     width: 800px;
 }
 
