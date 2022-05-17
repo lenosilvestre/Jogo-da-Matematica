@@ -1,11 +1,25 @@
 console.log('[Jogo da matemática] ');
 
-var largura = window.screen.width;
-console.log(largura);
-//proporção da tela
+
+function checkDevice() {
+  if (navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)
+  ) {
+    return true; // está utilizando celular
+  }
+  else {
+    return false; // não é celular
+  }
+}
+
 
 let proporcaoDaTela
-if (largura < 450) {
+if (checkDevice()) {
   proporcaoDaTela = 2
 } else {
   proporcaoDaTela = 1
@@ -489,10 +503,13 @@ function mostraCalculadora() {
  <p> <button onclick="calcular()" class="button" id="btCalcular">Calcular</button> </p>
 </div>
 `
-
-  let elementosFixos = document.getElementById("elementosFixos")
-  elementosFixos.style.top = '620px';
-
+  if (checkDevice()) {
+    let elementosFixos = document.getElementById("elementosFixos")
+    elementosFixos.style.top = '610px';
+  } else {
+    let elementosFixos = document.getElementById("elementosFixos")
+    elementosFixos.style.top = '720px';
+  }
 }
 
 
@@ -591,18 +608,26 @@ function calcular() {
 
 
     } else if (true) { //aqui vai ter as chances de tentativa do jogador
-      let elementosFixos = document.getElementById("elementosFixos")
-      elementosFixos.style.top = '720px';
+
 
       document.getElementById("inputCalc").innerHTML += `<div id="btProximocss"> OPA, NÃO DEU TENTE DE NOVO OU SORTEI NOVAMENTE <button onclick="proximaJogada()" 
       class="button" id="btProximo">Próximo Sorteio >></button> </div>`
 
-
+      if (checkDevice()) {
+        let elementosFixos = document.getElementById("elementosFixos")
+        elementosFixos.style.top = "720px";
+      } else {
+        let btp = document.getElementById("btProximocss")
+        btp.style.top = "147";
+        let elementosFixos = document.getElementById("elementosFixos")
+        elementosFixos.style.top = "847px";
+      }
+      document.getElementById("totalInput").value = segundoCalculo
 
     }
   }
 
-  document.getElementById("totalInput").value = segundoCalculo
+
 
 }
 
@@ -616,7 +641,12 @@ function proximaJogada() {
   faceDoDado2 = false;
   faceDoDado3 = false;
   let elementosFixos = document.getElementById("elementosFixos")
-  elementosFixos.style.top = '330px';
+  if (checkDevice()) {
+    elementosFixos.style.top = '330px';
+  } else {
+    elementosFixos.style.top = '620px';
+  }
+
   document.getElementById("inputCalc").innerHTML = ""
 
 }
@@ -653,7 +683,14 @@ function resetarJogo() {
 
   document.getElementById("inputCalc").innerHTML = ""
   let elementosFixos = document.getElementById("elementosFixos")
-  elementosFixos.style.top = '330px';
+  if (checkDevice()) {
+
+
+    elementosFixos.style.top = "330px";
+  } else {
+    elementosFixos.style.top = "590px";
+  }
+
   mudaParaTela(Telas.INICIO)
 
 }

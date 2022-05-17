@@ -62,7 +62,7 @@ select, button, input, label {
 
 #elementosFixos {
     position: absolute;
-    top: 720px;
+    top: 590px;
     width: 800px;
 }
 
@@ -78,10 +78,9 @@ select, button, input, label {
 
 #btProximocss {
     position: absolute;
-    top: 273px;
-    width: 400px;
+    top: 147px;
     display: flex;
-    width: 400px;
+    width: 800px;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
@@ -97,7 +96,6 @@ select, button, input, label {
     #elementosFixos {
 
         top: 330px;
-
         width: 350px;
         text-align: justify;
     }
