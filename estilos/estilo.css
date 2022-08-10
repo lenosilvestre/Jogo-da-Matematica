@@ -88,6 +88,21 @@ select, button, input, label {
     text-align: center;
 }
 
+footer {
+    border-top: 1px solid #333;
+    bottom: 0;
+    left: 0;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+
+
+
 @media only screen and (max-width: 450px) {
     canvas {
         left: 2px;
@@ -127,6 +142,8 @@ select, button, input, label {
         top: 273px;
         width: 400px;
     }
+
+
 
 
 }
