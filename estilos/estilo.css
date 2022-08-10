@@ -88,6 +88,11 @@ select, button, input, label {
     text-align: center;
 }
 
+a {
+    text-decoration: none;
+    color: #000000;
+}
+
 footer {
     border-top: 1px solid #333;
     bottom: 0;
@@ -96,9 +101,8 @@ footer {
     position: fixed;
     width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 12px;
 }
-
 
 
 
