@@ -41,6 +41,8 @@ const velocidadeSorteioDado = 5;
 const sprites = new Image();
 sprites.src = './img/sprites.png';
 
+//contador de tempo
+let time = 0;
 
 const canvas = document.querySelector('canvas');
 const contexto = canvas.getContext('2d');
@@ -72,6 +74,7 @@ const planoDeFundo = {
   }
 
 }
+
 
 function criaPersonagem() {
 
@@ -330,7 +333,7 @@ const Telas = {
   INICIO: {
     inicializa() {
       globais.personagem = criaPersonagem();
-      globais.coodenadaAtual = -1
+      globais.coordenadaAtual = -1
 
     },
     desenha() {
@@ -360,6 +363,8 @@ const Telas = {
     },
     atualiza() {
       globais.personagem.atualiza();
+
+
 
 
     }
@@ -412,6 +417,7 @@ function sorteiaDados(x) {
       console.log('dado3 foi: ', faceDoDado3)
       document.getElementById("btSorteia").disabled = "true"
       posicaoX = 140
+      startTimer()
       mostraCalculadora()
     }
 
@@ -460,6 +466,7 @@ function getMousePosition(canvas, event) {
 }
 
 function mostraCalculadora() {
+
   document.getElementById("inputCalc").innerHTML = ` 
 
   <div class="labelInput"> <label for="numero1" class="label">1º Dado</label>
@@ -520,6 +527,8 @@ let segundoCalculo = 0
 
 
 function calcular() {
+
+
   let valor1 = document.getElementById("valor1")
   let valor2 = document.getElementById("valor2")
   let valor3 = document.getElementById("valor3")
@@ -596,13 +605,14 @@ function calcular() {
     }
 
     //verifica se acertou o numero 
-    if (globais.coodenadaAtual + 2 == segundoCalculo) { //globais.coodenadaAtual + 2 == segundoCalculo
+    if (globais.coordenadaAtual + 2 == segundoCalculo) { //globais.coordenadaAtual + 2 == segundoCalculo
       console.log("vai avancar")
 
 
       document.getElementById("inputCalc").innerHTML = `<div id="btProximo"> PARABÉNS VOCÊ AVANÇOU NA TRILHA
      <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button> </div>
      `
+      pauseTimer()
       avancaNaTrilha()
 
 
@@ -633,9 +643,11 @@ function calcular() {
 
 
 function proximaJogada() {
-
+  exibeTimer()
   planoDeFundo.desenha();
   contexto.clearRect(0, 0, canvas.width, canvas.height);
+  pauseTimer()
+
   document.getElementById("btSorteia").disabled = false
   faceDoDado1 = false;
   faceDoDado2 = false;
@@ -674,6 +686,8 @@ function verificaNumeros(vl1, vl2, vl3) {
 
 //limpa a tela do canva
 function resetarJogo() {
+  stopTimer();
+  pauseTimer()
   planoDeFundo.desenha();
   contexto.clearRect(0, 0, canvas.width, canvas.height);
   document.getElementById("btSorteia").disabled = false
@@ -755,18 +769,91 @@ const trilhaMapa = [{
 ]
 
 function avancaNaTrilha() {
-  globais.coodenadaAtual += 1
+  globais.coordenadaAtual += 1
 
-  globais.personagem.x = trilhaMapa[globais.coodenadaAtual].coordenadaX / proporcaoDaTela
-  globais.personagem.y = trilhaMapa[globais.coodenadaAtual].coordenadaY / proporcaoDaTela
+  globais.personagem.x = trilhaMapa[globais.coordenadaAtual].coordenadaX / proporcaoDaTela
+  globais.personagem.y = trilhaMapa[globais.coordenadaAtual].coordenadaY / proporcaoDaTela
 
   planoDeFundo.desenha();
   globais.personagem.desenha()
-  if (globais.coodenadaAtual == 9) {
+  if (globais.coordenadaAtual == 9) {
     planoDeFundo.desenha();
     console.log("[GANHOU]")
-    globais.personagem.x = trilhaMapa[globais.coodenadaAtual + 1].coordenadaX / proporcaoDaTela
-    globais.personagem.y = trilhaMapa[globais.coodenadaAtual + 1].coordenadaY / proporcaoDaTela
+    globais.personagem.x = trilhaMapa[globais.coordenadaAtual + 1].coordenadaX / proporcaoDaTela
+    globais.personagem.y = trilhaMapa[globais.coordenadaAtual + 1].coordenadaY / proporcaoDaTela
     globais.personagem.desenha()
   }
+  exibeTimer()
+}
+
+//função de timer
+var hh = 0
+var mm = 0
+var ss = 0
+
+var tempo = 1000 //Quantos milésimos valem 1 segundo?
+var cronometro;
+
+//Inicia o cronometro
+function startTimer() {
+  cronometro = setInterval(() => { timer() }, tempo)
+
+}
+
+//Para o cronometro mas não limpa as variáveis
+function pauseTimer() {
+  clearInterval(cronometro);
+}
+
+//Para o cronometro e limpa as variáveis
+function stopTimer() {
+  clearInterval(cronometro);
+  hh = 0;
+  mm = 0;
+  ss = 0;
+
+}
+
+function timer() {
+  ss++
+  if (ss == 60) {
+    ss = 0
+    mm++;
+    if (mm == 60) {
+      mm = 0
+      hh++
+    }
+  }
+  exibeTimer()
+}
+
+function exibeTimer() {
+
+  let format = (hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss)
+  //document.getElementById('timer').innerText = format;
+
+  contexto.font = '40px serif'
+  contexto.clearRect(0, 0, 200, 200);
+  contexto.fillText(format, 20, 35)
+
+}
+
+
+//exibir na tela ainda em produção
+let pmsg = 800
+var cro
+function exibemenagem() {
+  cro = setInterval(() => { mensagem() }, 200)
+}
+function mensagem() {
+  planoDeFundo.desenha()
+  contexto.font = '40px serif'
+  contexto.fillText('PARABÉNS VOCÊ AVANÇOU NA TRILHA', pmsg, 255)
+  if (pmsg > -750) {
+    pmsg -= 50
+  }
+  else {
+    pmsg = 800
+  }
+
 }
