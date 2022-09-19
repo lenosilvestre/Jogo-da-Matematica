@@ -612,6 +612,7 @@ function calcular() {
       document.getElementById("inputCalc").innerHTML = `<div id="btProximo"> PARABÉNS VOCÊ AVANÇOU NA TRILHA
      <button onclick="proximaJogada()" class="button" id="btProximo">Próximo Sorteio >></button> </div>
      `
+      exibemenagem() //mensagem de parabéns na tela
       pauseTimer()
       avancaNaTrilha()
 
@@ -643,6 +644,7 @@ function calcular() {
 
 
 function proximaJogada() {
+  stopMensagem()//para de exibir a mensagem na tela
   exibeTimer()
   planoDeFundo.desenha();
   contexto.clearRect(0, 0, canvas.width, canvas.height);
@@ -786,7 +788,7 @@ function avancaNaTrilha() {
   exibeTimer()
 }
 
-//função de timer
+/*=======função de timer====*/
 var hh = 0
 var mm = 0
 var ss = 0
@@ -832,28 +834,46 @@ function exibeTimer() {
   let format = (hh < 10 ? '0' + hh : hh) + ':' + (mm < 10 ? '0' + mm : mm) + ':' + (ss < 10 ? '0' + ss : ss)
   //document.getElementById('timer').innerText = format;
 
+
   contexto.font = '40px serif'
-  contexto.clearRect(0, 0, 200, 200);
+  contexto.clearRect(0, 0, 200, 50);
   contexto.fillText(format, 20, 35)
 
 }
 
 
-//exibir na tela ainda em produção
-let pmsg = 800
-var cro
+//exibir na tela mensage de parabéns - ainda em desenvolvimento
+let posicaoNaTela = 800 //onde começa a exibir na tela
+var tempoDeMsg
 function exibemenagem() {
-  cro = setInterval(() => { mensagem() }, 200)
+  tempoDeMsg = setInterval(() => { mensagem() }, 200)
 }
 function mensagem() {
-  planoDeFundo.desenha()
-  contexto.font = '40px serif'
-  contexto.fillText('PARABÉNS VOCÊ AVANÇOU NA TRILHA', pmsg, 255)
-  if (pmsg > -750) {
-    pmsg -= 50
+
+  planoDeFundo.desenha() //desenha o plano de fundo para apagar a mensagem anterior
+
+
+  /*Colorindo o texo */
+  // let gradient = contexto.createLinearGradient(0, 0, 800, 0)
+  //  gradient.addColorStop("0", "magenta")
+  // gradient.addColorStop("0", "blue")
+  //  gradient.addColorStop("0", "red")
+  // contexto.fillStyle = gradient
+
+
+
+  contexto.font = '700 60px Arial'
+  contexto.fillText('PARABÉNS VOCÊ AVANÇOU NA TRILHA', posicaoNaTela, 255)
+  if (posicaoNaTela > -750) {
+    posicaoNaTela -= 50
   }
   else {
-    pmsg = 800
+    posicaoNaTela = 800
   }
 
+}
+function stopMensagem() {
+  clearInterval(tempoDeMsg);
+  planoDeFundo.desenha()
+  exibeTimer()
 }
