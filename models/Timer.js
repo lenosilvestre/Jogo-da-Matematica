@@ -9,18 +9,27 @@ class Timer {
     this.ss = 0;
     this.tempo = 1000; // milissegundos por segundo
     this.cronometro = null;
+    this.running = false;
   }
 
   start() {
+    if (this.running) {
+      return;
+    }
     this.cronometro = setInterval(() => this.timer(), this.tempo);
+    this.running = true;
   }
 
   pause() {
     clearInterval(this.cronometro);
+    this.cronometro = null;
+    this.running = false;
   }
 
   stop() {
     clearInterval(this.cronometro);
+    this.cronometro = null;
+    this.running = false;
     this.reset();
   }
 

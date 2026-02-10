@@ -131,6 +131,10 @@ function loop() {
   if (gameController.faceDoDado1 && gameController.faceDoDado2 && gameController.faceDoDado3 && !document.getElementById("inputCalc").innerHTML.trim()) {
     mostraCalculadora();
   }
+  const timerEl = document.getElementById("timer");
+  if (timerEl) {
+    timerEl.textContent = timer.getFormattedTime();
+  }
   requestAnimationFrame(loop);
 }
 
@@ -139,10 +143,20 @@ loop();
 
 // Funções globais para eventos
 function sorteiaDados(x) {
+  let limparInput = document.getElementById("inputCalc");
+  limparInput.innerHTML = "";
+  stopMensagem();
+  posicaoNaTela = 800;
+  if (!timer.running) {
+    startTimer();
+  }
   gameController.clearDados();
   gameController.sort = x;
   gameController.dadoAtual = 0;
   gameController.contador = 0;
+  let btCaclcular1 = document.getElementById("btCalcular");
+  btCaclcular1.disabled = false;
+
 }
 
 function escreveNaTela(msg) {
@@ -265,6 +279,8 @@ function calcular() {
         gameController.avancaNaTrilha(window.planoDeFundo);
         exibemenagem();
         startTimer();
+        let btCaclcular1 = document.getElementById("btCalcular");
+        btCaclcular1.disabled = true;
       } else {
         alert("Cálculo incorreto. Tente novamente.");
       }

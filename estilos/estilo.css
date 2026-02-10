@@ -66,6 +66,13 @@ select, button, input, label {
     width: 800px;
 }
 
+#timer {
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
 .labelInput {
     display: flex;
     flex-direction: row;
@@ -117,6 +124,11 @@ footer {
         top: 330px;
         width: 350px;
         text-align: justify;
+    }
+
+    #timer {
+        font-size: 20px;
+        margin-bottom: 6px;
     }
 
     #inputCalc-1 {
